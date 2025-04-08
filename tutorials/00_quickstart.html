@@ -1,0 +1,370 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1. 快速开始 &mdash; RPCP 2.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. 基础数据类型介绍" href="01_use_liegroup.html" />
+    <link rel="prev" title="教程总览" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            RPCP
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">安装说明</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">教程总览</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1. 快速开始</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">1.1. 工件的抓取与搬运</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">1.2. 带避障功能的工件抓取与放置</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="01_use_liegroup.html">2. 基础数据类型介绍</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RPCP</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">教程总览</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">1. </span>快速开始</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorials/00_quickstart.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">1. </span>快速开始<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>这一教程主要是以几个简单的场景为例，快速介绍RPCP机器人开发平台的功能和用法，让读者对RPCP有宏观大致的了解，更多功能以及每个功能的详细使用方法参考剩余教程</p>
+<section id="id2">
+<h2><span class="section-number">1.1. </span>工件的抓取与搬运<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>运行以下python程序，仿真中GP12机器人将依次将9个工件搬运到目标位置</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">RVLab</span><span class="w"> </span><span class="kn">import</span> <span class="n">RPS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython</span><span class="w"> </span><span class="kn">import</span> <span class="n">embed</span>
+
+<span class="c1"># 打开仿真器</span>
+<span class="n">rvis</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RobotVis</span><span class="p">()</span>
+
+<span class="c1"># 终端输入exit()或者ctrl+d继续</span>
+<span class="n">embed</span><span class="p">()</span>
+
+<span class="c1"># 创建桌子1模型</span>
+<span class="n">table1</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RigidBody</span><span class="p">()</span>
+<span class="n">table1</span><span class="o">.</span><span class="n">InitFromBox</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)</span>
+<span class="n">table1</span><span class="o">.</span><span class="n">SetBaseTransformation</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">rvis</span><span class="o">.</span><span class="n">AddBody</span><span class="p">(</span><span class="n">table1</span><span class="p">)</span>
+
+<span class="c1"># 创建桌子2模型</span>
+<span class="n">table2</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RigidBody</span><span class="p">()</span>
+<span class="n">table2</span><span class="o">.</span><span class="n">InitFromBox</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)</span>
+<span class="n">table2</span><span class="o">.</span><span class="n">SetBaseTransformation</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">rvis</span><span class="o">.</span><span class="n">AddBody</span><span class="p">(</span><span class="n">table2</span><span class="p">)</span>
+
+<span class="c1"># 创建9个被抓取工件</span>
+<span class="n">workpieces</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">target_pose</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+      <span class="n">box</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RigidBody</span><span class="p">()</span>
+      <span class="n">box</span><span class="o">.</span><span class="n">InitFromBox</span><span class="p">(</span><span class="mf">0.09</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
+      <span class="n">rvis</span><span class="o">.</span><span class="n">AddBody</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+      <span class="n">rvis</span><span class="o">.</span><span class="n">SetColor</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+      <span class="n">workpieces</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+      <span class="n">workpieces</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">SetBaseTransformation</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="mf">0.8</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span> <span class="o">+</span> <span class="n">j</span> <span class="o">*</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.625</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">3.1415926</span><span class="p">))</span>
+      <span class="c1"># 创建9个放置目标位置</span>
+      <span class="n">target_pose</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span> <span class="o">+</span> <span class="n">j</span> <span class="o">*</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.625</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5708</span><span class="p">))</span>
+
+<span class="c1"># 创建GP12机器人</span>
+<span class="n">robot_model</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RobotModel</span><span class="p">()</span>
+<span class="n">robot_model</span><span class="o">.</span><span class="n">InitFromFile</span><span class="p">(</span><span class="s1">&#39;./source/_static/model/RobotModel/GP12.robot&#39;</span><span class="p">)</span>
+<span class="n">rvis</span><span class="o">.</span><span class="n">AddBody</span><span class="p">(</span><span class="n">robot_model</span><span class="p">)</span>
+
+<span class="c1"># 创建末端执行器(吸盘)</span>
+<span class="n">eef</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">EndEffector</span><span class="p">()</span>
+<span class="n">eef</span><span class="o">.</span><span class="n">InitFromFile</span><span class="p">(</span><span class="s1">&#39;./source/_static/model/EndEffector/FourFingerVacuumPads.eef&#39;</span><span class="p">)</span>
+<span class="n">eef</span><span class="o">.</span><span class="n">SetAttachingPose</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="c1"># 机器人安装末端执行器</span>
+<span class="n">manip</span> <span class="o">=</span> <span class="n">robot_model</span><span class="o">.</span><span class="n">GetActiveManipulator</span><span class="p">()</span>
+<span class="n">manip</span><span class="o">.</span><span class="n">SetActiveEndEffector</span><span class="p">(</span><span class="n">eef</span><span class="p">)</span>
+
+<span class="c1"># 创建仿真虚拟控制器</span>
+<span class="n">controller</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">SimController</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="n">manip</span><span class="p">)</span>
+<span class="c1"># 连接机器人</span>
+<span class="n">controller</span><span class="o">.</span><span class="n">Connect</span><span class="p">(</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">)</span>
+<span class="c1"># 使能机器人</span>
+<span class="n">controller</span><span class="o">.</span><span class="n">EnableRobot</span><span class="p">()</span>
+<span class="c1"># 创建基础运动规划器</span>
+<span class="n">base_motion</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">BasicMotionUtilities</span><span class="p">(</span><span class="n">controller</span><span class="p">)</span>
+<span class="n">base_motion</span><span class="o">.</span><span class="n">SetJointThreshold</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+      <span class="n">base_motion</span><span class="o">.</span><span class="n">MoveJoints</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">SE3Tangent</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">workpieces</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">GetBaseTransformation</span><span class="p">())</span>
+      <span class="n">base_motion</span><span class="o">.</span><span class="n">MoveBZ</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">)</span>
+      <span class="n">eef</span><span class="o">.</span><span class="n">Grab</span><span class="p">(</span><span class="n">workpieces</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">j</span><span class="p">])</span>
+      <span class="n">base_motion</span><span class="o">.</span><span class="n">MoveBZ</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+      <span class="n">base_motion</span><span class="o">.</span><span class="n">MoveJoints</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">SE3Tangent</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">target_pose</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">j</span><span class="p">])</span>
+      <span class="n">base_motion</span><span class="o">.</span><span class="n">MoveBZ</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">)</span>
+      <span class="n">eef</span><span class="o">.</span><span class="n">Release</span><span class="p">(</span><span class="n">workpieces</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">j</span><span class="p">])</span>
+      <span class="n">base_motion</span><span class="o">.</span><span class="n">MoveBZ</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="c1"># 回原位</span>
+<span class="n">base_motion</span><span class="o">.</span><span class="n">MoveJoints</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">Rx</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5708</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+
+<span class="n">embed</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="GP12抓取搬运案例" class="align-center" src="../_images/00_quickstart_00.gif" />
+</section>
+<section id="id3">
+<h2><span class="section-number">1.2. </span>带避障功能的工件抓取与放置<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>运行以下python程序，仿真中GP12机器人将依次将9个工件搬运到目标位置，同时对于搬运路径上的障碍物，自动生成无碰撞的路径</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">RVLab</span><span class="w"> </span><span class="kn">import</span> <span class="n">RPS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython</span><span class="w"> </span><span class="kn">import</span> <span class="n">embed</span>
+
+<span class="c1"># 打开仿真器</span>
+<span class="n">rvis</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RobotVis</span><span class="p">()</span>
+
+<span class="c1"># 终端输入exit()或者ctrl+d继续</span>
+<span class="n">embed</span><span class="p">()</span>
+
+<span class="c1"># 创建桌子1模型</span>
+<span class="n">table1</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RigidBody</span><span class="p">()</span>
+<span class="n">table1</span><span class="o">.</span><span class="n">InitFromBox</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)</span>
+<span class="n">table1</span><span class="o">.</span><span class="n">SetName</span><span class="p">(</span><span class="s2">&quot;table1&quot;</span><span class="p">)</span>
+<span class="n">table1</span><span class="o">.</span><span class="n">SetBaseTransformation</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">rvis</span><span class="o">.</span><span class="n">AddBody</span><span class="p">(</span><span class="n">table1</span><span class="p">)</span>
+
+<span class="c1"># 创建桌子2模型</span>
+<span class="n">table2</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RigidBody</span><span class="p">()</span>
+<span class="n">table2</span><span class="o">.</span><span class="n">InitFromBox</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)</span>
+<span class="n">table2</span><span class="o">.</span><span class="n">SetName</span><span class="p">(</span><span class="s2">&quot;table2&quot;</span><span class="p">)</span>
+<span class="n">table2</span><span class="o">.</span><span class="n">SetBaseTransformation</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">rvis</span><span class="o">.</span><span class="n">AddBody</span><span class="p">(</span><span class="n">table2</span><span class="p">)</span>
+
+<span class="c1"># 创建搬运路径上的障碍物</span>
+<span class="n">wall</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RigidBody</span><span class="p">()</span>
+<span class="n">wall</span><span class="o">.</span><span class="n">InitFromBox</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+<span class="n">wall</span><span class="o">.</span><span class="n">SetName</span><span class="p">(</span><span class="s2">&quot;wall&quot;</span><span class="p">)</span>
+<span class="n">wall</span><span class="o">.</span><span class="n">SetBaseTransformation</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="mf">0.65</span><span class="p">,</span> <span class="mf">0.65</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5708</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">))</span>
+<span class="n">rvis</span><span class="o">.</span><span class="n">AddBody</span><span class="p">(</span><span class="n">wall</span><span class="p">)</span>
+
+<span class="c1"># 创建9个被抓取工件</span>
+<span class="n">workpieces</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">target_pose</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+      <span class="n">box</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RigidBody</span><span class="p">()</span>
+      <span class="n">box</span><span class="o">.</span><span class="n">InitFromBox</span><span class="p">(</span><span class="mf">0.09</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
+      <span class="n">box</span><span class="o">.</span><span class="n">SetName</span><span class="p">(</span><span class="s2">&quot;box&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">j</span><span class="p">))</span>
+      <span class="n">rvis</span><span class="o">.</span><span class="n">AddBody</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+      <span class="n">rvis</span><span class="o">.</span><span class="n">SetColor</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+      <span class="n">workpieces</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+      <span class="n">workpieces</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">SetBaseTransformation</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="mf">0.8</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span> <span class="o">+</span> <span class="n">j</span> <span class="o">*</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.625</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">3.1415926</span><span class="p">))</span>
+      <span class="c1"># 创建9个放置目标位置</span>
+      <span class="n">target_pose</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span> <span class="o">+</span> <span class="n">j</span> <span class="o">*</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.625</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5708</span><span class="p">))</span>
+
+<span class="c1"># 创建GP12机器人</span>
+<span class="n">robot_model</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RobotModel</span><span class="p">()</span>
+<span class="n">robot_model</span><span class="o">.</span><span class="n">InitFromFile</span><span class="p">(</span><span class="s1">&#39;./source/_static/model/RobotModel/GP12.robot&#39;</span><span class="p">)</span>
+<span class="n">rvis</span><span class="o">.</span><span class="n">AddBody</span><span class="p">(</span><span class="n">robot_model</span><span class="p">)</span>
+
+<span class="c1"># 创建末端执行器(吸盘)</span>
+<span class="n">eef</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">EndEffector</span><span class="p">()</span>
+<span class="n">eef</span><span class="o">.</span><span class="n">InitFromFile</span><span class="p">(</span><span class="s1">&#39;./source/_static/model/EndEffector/FourFingerVacuumPads.eef&#39;</span><span class="p">)</span>
+<span class="n">eef</span><span class="o">.</span><span class="n">SetAttachingPose</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="c1"># 机器人安装末端执行器</span>
+<span class="n">manip</span> <span class="o">=</span> <span class="n">robot_model</span><span class="o">.</span><span class="n">GetActiveManipulator</span><span class="p">()</span>
+<span class="n">max_vel</span><span class="p">,</span> <span class="n">max_acc</span><span class="p">,</span> <span class="n">max_jerk</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">ConvertJointLimitsToCVec</span><span class="p">(</span><span class="n">manip</span><span class="o">.</span><span class="n">GetJointLimits</span><span class="p">())</span>
+<span class="n">manip</span><span class="o">.</span><span class="n">SetActiveEndEffector</span><span class="p">(</span><span class="n">eef</span><span class="p">)</span>
+
+<span class="c1"># 创建仿真虚拟控制器</span>
+<span class="n">controller</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">SimController</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="n">manip</span><span class="p">)</span>
+<span class="c1"># 连接机器人</span>
+<span class="n">controller</span><span class="o">.</span><span class="n">Connect</span><span class="p">(</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">)</span>
+<span class="c1"># 使能机器人</span>
+<span class="n">controller</span><span class="o">.</span><span class="n">EnableRobot</span><span class="p">()</span>
+<span class="c1"># 创建基础运动规划器</span>
+<span class="n">base_motion</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">BasicMotionUtilities</span><span class="p">(</span><span class="n">controller</span><span class="p">)</span>
+<span class="n">base_motion</span><span class="o">.</span><span class="n">SetJointThreshold</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># 创建运动学求解器</span>
+<span class="n">kin_solver</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">GetKinSolver</span><span class="p">()</span>
+
+<span class="c1"># 创建点到点规划器</span>
+<span class="n">p2p_planner</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">OmplParallelPlanPlanner</span><span class="p">(</span><span class="n">planner_types</span><span class="o">=</span><span class="mi">4</span> <span class="o">*</span> <span class="p">[</span><span class="n">RPS</span><span class="o">.</span><span class="n">OmplType_RRTConnect</span><span class="p">],</span>
+                                          <span class="n">max_solutions</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                          <span class="n">optimize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                          <span class="n">max_planning_time</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
+                                          <span class="n">simplify</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                          <span class="n">simplify_level</span><span class="o">=</span><span class="n">RPS</span><span class="o">.</span><span class="n">Simplify_Level_Medium</span><span class="p">,</span>
+                                          <span class="n">smooth</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">planner_config</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">OmplParallelPlanPlanner</span><span class="o">.</span><span class="n">GetDefaultJson</span><span class="p">()</span>
+<span class="n">p2p_planner</span><span class="o">.</span><span class="n">SetPlannerComponents</span><span class="p">(</span><span class="n">planner_config</span><span class="p">)</span>
+<span class="n">p2p_planner</span><span class="o">.</span><span class="n">Config</span><span class="p">(</span><span class="n">rvis</span><span class="o">.</span><span class="n">m_env</span><span class="p">,</span> <span class="n">manip</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+      <span class="c1"># 将机器人当前位置设置为规划的起点</span>
+      <span class="n">start</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">GetJointPositions</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+      <span class="c1"># 计算规划的终点位姿</span>
+      <span class="n">goal_pose</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">SE3Tangent</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">workpieces</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">GetBaseTransformation</span><span class="p">()</span>
+      <span class="c1"># 用运动学求解器计算对应的逆解</span>
+      <span class="n">res</span> <span class="o">=</span> <span class="n">kin_solver</span><span class="o">.</span><span class="n">GetNearestIK</span><span class="p">(</span><span class="n">goal_pose</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;IK failed&quot;</span><span class="p">)</span>
+            <span class="n">exit</span><span class="p">()</span>
+      <span class="c1"># 更新规划器的env</span>
+      <span class="n">p2p_planner</span><span class="o">.</span><span class="n">Config</span><span class="p">(</span><span class="n">rvis</span><span class="o">.</span><span class="n">m_env</span><span class="p">,</span> <span class="n">manip</span><span class="p">)</span>
+      <span class="c1"># 创建规划请求</span>
+      <span class="n">request</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">OmplPlanner</span><span class="o">.</span><span class="n">CreateRequest</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+      <span class="c1"># 规划计算</span>
+      <span class="n">res</span><span class="p">,</span> <span class="n">response</span> <span class="o">=</span> <span class="n">p2p_planner</span><span class="o">.</span><span class="n">Solve</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+      <span class="k">if</span> <span class="ow">not</span> <span class="n">res</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Plan failed&quot;</span><span class="p">)</span>
+            <span class="n">exit</span><span class="p">()</span>
+
+      <span class="c1"># 轨迹规划生成连续光滑路径</span>
+      <span class="n">path</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">CreatePath</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">joint_positions_vec</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">RPS</span><span class="o">.</span><span class="n">PathType_Bezier2ndBlend</span><span class="p">)</span>
+      <span class="n">traj</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">CreateTrajectory</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">max_vel</span><span class="p">,</span> <span class="n">max_acc</span><span class="p">,</span> <span class="n">max_jerk</span><span class="p">,</span> <span class="n">traj_type</span><span class="o">=</span><span class="n">RPS</span><span class="o">.</span><span class="n">TrajType_Trapezoidal</span><span class="p">)</span>
+      <span class="n">hs</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">DrawTraj</span><span class="p">(</span><span class="n">traj</span><span class="o">=</span><span class="n">traj</span><span class="p">,</span>
+                        <span class="n">show_in_vis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">show_in_plt</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">view</span><span class="o">=</span><span class="n">rvis</span><span class="o">.</span><span class="n">m_view</span><span class="p">,</span>
+                        <span class="n">kin_solver</span><span class="o">=</span><span class="n">kin_solver</span><span class="p">,</span>
+                        <span class="n">axis_length</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+      <span class="c1"># 修改控制器速度为0.2</span>
+      <span class="n">controller</span><span class="o">.</span><span class="n">SetSpeedRatio</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+      <span class="c1"># 执行轨迹</span>
+      <span class="n">controller</span><span class="o">.</span><span class="n">ExecuteTrajectory</span><span class="p">(</span><span class="n">traj</span><span class="p">)</span>
+      <span class="c1"># 修改控制器速度为1</span>
+      <span class="n">controller</span><span class="o">.</span><span class="n">SetSpeedRatio</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">rvis</span><span class="o">.</span><span class="n">Delete</span><span class="p">(</span><span class="n">hs</span><span class="p">)</span>
+      <span class="c1"># 机器人末端下降0.1m</span>
+      <span class="n">base_motion</span><span class="o">.</span><span class="n">MoveBZ</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">)</span>
+      <span class="c1"># 仿真中抓取工件</span>
+      <span class="n">eef</span><span class="o">.</span><span class="n">Grab</span><span class="p">(</span><span class="n">workpieces</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">j</span><span class="p">])</span>
+      <span class="c1"># 机器人末端抬升0.1m</span>
+      <span class="n">base_motion</span><span class="o">.</span><span class="n">MoveBZ</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+      <span class="n">start</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">GetJointPositions</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+      <span class="n">goal_pose</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">SE3Tangent</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">target_pose</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span>
+      <span class="n">res</span> <span class="o">=</span> <span class="n">kin_solver</span><span class="o">.</span><span class="n">GetNearestIK</span><span class="p">(</span><span class="n">goal_pose</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;IK failed&quot;</span><span class="p">)</span>
+            <span class="n">exit</span><span class="p">()</span>
+      <span class="n">p2p_planner</span><span class="o">.</span><span class="n">Config</span><span class="p">(</span><span class="n">rvis</span><span class="o">.</span><span class="n">m_env</span><span class="p">,</span> <span class="n">manip</span><span class="p">)</span>
+      <span class="n">request</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">OmplPlanner</span><span class="o">.</span><span class="n">CreateRequest</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+      <span class="n">res</span><span class="p">,</span> <span class="n">response</span> <span class="o">=</span> <span class="n">p2p_planner</span><span class="o">.</span><span class="n">Solve</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+      <span class="k">if</span> <span class="ow">not</span> <span class="n">res</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Plan failed&quot;</span><span class="p">)</span>
+            <span class="n">exit</span><span class="p">()</span>
+
+      <span class="n">path</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">CreatePath</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">joint_positions_vec</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">RPS</span><span class="o">.</span><span class="n">PathType_Bezier2ndBlend</span><span class="p">)</span>
+      <span class="n">traj</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">CreateTrajectory</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">max_vel</span><span class="p">,</span> <span class="n">max_acc</span><span class="p">,</span> <span class="n">max_jerk</span><span class="p">,</span> <span class="n">traj_type</span><span class="o">=</span><span class="n">RPS</span><span class="o">.</span><span class="n">TrajType_Trapezoidal</span><span class="p">)</span>
+      <span class="n">hs</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">DrawTraj</span><span class="p">(</span><span class="n">traj</span><span class="o">=</span><span class="n">traj</span><span class="p">,</span>
+                        <span class="n">show_in_vis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">show_in_plt</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">view</span><span class="o">=</span><span class="n">rvis</span><span class="o">.</span><span class="n">m_view</span><span class="p">,</span>
+                        <span class="n">kin_solver</span><span class="o">=</span><span class="n">kin_solver</span><span class="p">,</span>
+                        <span class="n">axis_length</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+      <span class="n">controller</span><span class="o">.</span><span class="n">SetSpeedRatio</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+      <span class="n">controller</span><span class="o">.</span><span class="n">ExecuteTrajectory</span><span class="p">(</span><span class="n">traj</span><span class="p">)</span>
+      <span class="n">controller</span><span class="o">.</span><span class="n">SetSpeedRatio</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">rvis</span><span class="o">.</span><span class="n">Delete</span><span class="p">(</span><span class="n">hs</span><span class="p">)</span>
+      <span class="n">base_motion</span><span class="o">.</span><span class="n">MoveBZ</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">)</span>
+      <span class="n">eef</span><span class="o">.</span><span class="n">Release</span><span class="p">(</span><span class="n">workpieces</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">j</span><span class="p">])</span>
+      <span class="n">base_motion</span><span class="o">.</span><span class="n">MoveBZ</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="c1"># 回原位</span>
+<span class="n">base_motion</span><span class="o">.</span><span class="n">MoveJoints</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">Rx</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5708</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+
+<span class="n">embed</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="GP12避障抓取搬运案例" class="align-center" src="../_images/00_quickstart_01.gif" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="教程总览" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="01_use_liegroup.html" class="btn btn-neutral float-right" title="2. 基础数据类型介绍" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, RVLab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

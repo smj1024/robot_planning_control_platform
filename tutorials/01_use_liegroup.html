@@ -1,0 +1,229 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2. 基础数据类型介绍 &mdash; RPCP 2.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="1. 快速开始" href="00_quickstart.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            RPCP
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">安装说明</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">教程总览</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="00_quickstart.html">1. 快速开始</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. 基础数据类型介绍</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.1. 关节位置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.2. 笛卡尔位置姿态</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RPCP</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">教程总览</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2. </span>基础数据类型介绍</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorials/01_use_liegroup.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">2. </span>基础数据类型介绍<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<section id="id2">
+<h2><span class="section-number">2.1. </span>关节位置<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>RPCP中采用Rx数据类型来表示机器人的关节位置</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">RVLab</span><span class="w"> </span><span class="kn">import</span> <span class="n">RPS</span>
+
+<span class="c1"># 用list定义一个六自由度机器人关节位置q0</span>
+<span class="n">q0</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">Rx</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># 用numpy数据类型定义一个六自由度机器人关节位置q1</span>
+<span class="n">q1</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">Rx</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.6</span><span class="p">]))</span>
+
+<span class="c1"># 将Rx转化成numpy的数据类型</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">q1</span><span class="o">.</span><span class="n">Coeffs</span><span class="p">()</span>
+
+<span class="c1"># 输出q0自由度</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">q0</span><span class="o">.</span><span class="n">DoF</span><span class="p">())</span>
+
+<span class="c1"># 随机生成一个7轴机器人关节位置数据</span>
+<span class="n">q_random</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">Rx</span><span class="o">.</span><span class="n">RandomStatic</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">q_random</span><span class="p">)</span>
+
+<span class="c1"># 关节插值计算</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">q0</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">q1</span><span class="o">-</span><span class="n">q0</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2><span class="section-number">2.2. </span>笛卡尔位置姿态<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>RPCP中采用Pose数据类型表示机器人的末端位置与姿态</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">RVLab</span><span class="w"> </span><span class="kn">import</span> <span class="n">RPS</span>
+
+<span class="c1"># 定义一个位置在世界坐标系原点，姿态与世界坐标系重合的pose</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">()</span>
+<span class="c1"># 输出：Pose([0, 0, 0, 0, 0, 0, 1])</span>
+<span class="c1"># 前三位为位置参数：x，y，z</span>
+<span class="c1"># 后四位为四元数：ox，oy，oz，ow</span>
+
+<span class="c1"># 定义一个随即pose</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="o">.</span><span class="n">RandomStatic</span><span class="p">()</span>
+
+<span class="c1"># 利用位置+四元数定义一个pose</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># 前三位为位置参数：x，y，z</span>
+<span class="c1"># 后四位为四元数：ox，oy，oz，ow</span>
+
+<span class="c1"># 利用位置+四元数定义一个pose</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]))</span>
+<span class="c1"># 前三位为位置参数：x，y，z</span>
+<span class="c1"># 后四位为四元数：ox，oy，oz，ow</span>
+
+<span class="c1"># 利用位置+四元数定义一个pose</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">]),</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]))</span>
+<span class="c1"># 前三位为位置参数：x，y，z</span>
+<span class="c1"># 后四位为四元数：ox，oy，oz，ow</span>
+
+<span class="c1"># 从一个已有pose构造一个新pose</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+
+<span class="c1"># 从4x4齐次变换矩阵构造一个pose</span>
+<span class="n">p3</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.3</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]]))</span>
+
+<span class="c1"># 利用位置+RPY角定义一个pose</span>
+<span class="n">p4</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># 前三位为位置参数：x，y，z</span>
+<span class="c1"># 后三位为RPY：roll,pitch,yaw</span>
+<span class="c1"># 旋转顺序为rot(yaw)*rot(pitch)*rot(roll)</span>
+</pre></div>
+</div>
+<p>Pose数据可以通过以下方式访问</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">RVLab</span><span class="w"> </span><span class="kn">import</span> <span class="n">RPS</span>
+
+<span class="c1"># 利用位置+RPY角定义一个pose</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.5708</span><span class="p">)</span>
+
+<span class="c1"># 通过下标访问</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">ox</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">oy</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">oz</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">ow</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+
+<span class="c1"># 将pose转化成numpy数据</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">Coeffs</span><span class="p">()</span>
+
+<span class="c1"># 获取位置向量</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">GetR3</span><span class="p">()</span>
+
+<span class="c1"># 获取位置向量(功能与GetR3相同，但是返回numpy的数据类型)</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">Translation</span><span class="p">()</span>
+
+<span class="c1"># 获取四元数</span>
+<span class="n">quat</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">GetSO3</span><span class="p">()</span>
+
+<span class="c1"># 获取对应的3x3旋转矩阵(numpy的数据类型)</span>
+<span class="n">r_rot</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">Rotation</span><span class="p">()</span>
+
+<span class="c1"># 获取对应的4x4齐次矩阵(numpy的数据类型)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">Transform</span><span class="p">()</span>
+
+<span class="c1"># 获取旋转矩阵对应的RPY角(numpy的数据类型)</span>
+<span class="n">rpy</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">RPY</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="00_quickstart.html" class="btn btn-neutral float-left" title="1. 快速开始" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, RVLab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
