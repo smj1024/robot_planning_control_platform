@@ -20,3 +20,36 @@ RPCP中采用 **RPS.EndEffector** 管理机器人末端执行器
 
     # 从RobotModel获取Manipulator
     manip = robot_model.GetActiveManipulator()
+
+    eef = RPS.EndEffector()
+    eef.InitFromFile('./source/_static/model/EndEffector/FourFingerVacuumPads.eef')
+    embed()
+    
+    manip.SetActiveEndEffector(eef)
+    embed()
+
+    eef.SetAttachingPose(RPS.Pose(0,0,0,0,0,0))
+    embed()
+
+    print(manip.GetTCP())
+
+    manip.SetTCP(RPS.Pose([0.185, 0, 0.28, 0, 1, 0, 0]))
+    embed()
+
+    # 显示碰撞模型
+    rvis.ChooseShowMode(mode=2)
+    embed()
+
+    # 显示可视化模型
+    rvis.ChooseShowMode(mode=1)
+    embed()
+
+    rvis.StartDragging(manip)
+    embed()
+
+    rvis.StopDragging()
+    embed()
+
+.. image:: ../_static/imgs/04_use_endeffector_00.gif
+   :alt: 使用EndEffector
+   :align: center

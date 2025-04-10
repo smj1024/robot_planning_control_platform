@@ -102,8 +102,38 @@
 
 <span class="c1"># 从RobotModel获取Manipulator</span>
 <span class="n">manip</span> <span class="o">=</span> <span class="n">robot_model</span><span class="o">.</span><span class="n">GetActiveManipulator</span><span class="p">()</span>
+
+<span class="n">eef</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">EndEffector</span><span class="p">()</span>
+<span class="n">eef</span><span class="o">.</span><span class="n">InitFromFile</span><span class="p">(</span><span class="s1">&#39;./source/_static/model/EndEffector/FourFingerVacuumPads.eef&#39;</span><span class="p">)</span>
+<span class="n">embed</span><span class="p">()</span>
+
+<span class="n">manip</span><span class="o">.</span><span class="n">SetActiveEndEffector</span><span class="p">(</span><span class="n">eef</span><span class="p">)</span>
+<span class="n">embed</span><span class="p">()</span>
+
+<span class="n">eef</span><span class="o">.</span><span class="n">SetAttachingPose</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">embed</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">manip</span><span class="o">.</span><span class="n">GetTCP</span><span class="p">())</span>
+
+<span class="n">manip</span><span class="o">.</span><span class="n">SetTCP</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">([</span><span class="mf">0.185</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.28</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+<span class="n">embed</span><span class="p">()</span>
+
+<span class="c1"># 显示碰撞模型</span>
+<span class="n">rvis</span><span class="o">.</span><span class="n">ChooseShowMode</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">embed</span><span class="p">()</span>
+
+<span class="c1"># 显示可视化模型</span>
+<span class="n">rvis</span><span class="o">.</span><span class="n">ChooseShowMode</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">embed</span><span class="p">()</span>
+
+<span class="n">rvis</span><span class="o">.</span><span class="n">StartDragging</span><span class="p">(</span><span class="n">manip</span><span class="p">)</span>
+<span class="n">embed</span><span class="p">()</span>
+
+<span class="n">rvis</span><span class="o">.</span><span class="n">StopDragging</span><span class="p">()</span>
+<span class="n">embed</span><span class="p">()</span>
 </pre></div>
 </div>
+<img alt="使用EndEffector" class="align-center" src="../_images/04_use_endeffector_00.gif" />
 </section>
 </section>
 
