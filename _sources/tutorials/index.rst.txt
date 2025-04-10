@@ -7,3 +7,4 @@
 
    00_quickstart
    01_use_liegroup
+   02_use_robotvis
