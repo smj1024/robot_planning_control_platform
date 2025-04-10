@@ -20,5 +20,6 @@ RPCP（Robot Planning & Control Platform）：机器人规划与控制开发平�
    :caption: 目录:
 
    installation
-   tutorials/index    
+   tutorials/index   
+   contact.rst 
    .. api/index
