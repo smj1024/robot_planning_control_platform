@@ -1,0 +1,22 @@
+使用EndEffector
+===================
+
+RPCP中采用 **RPS.EndEffector** 管理机器人末端执行器
+
+创建并使用EndEffector
+-----------------------
+以下代码展示了在Motoman_GP12机器人末端安装一个末端执行器吸盘
+
+.. code-block:: python
+
+    import numpy as np
+    from RVLab import RPS
+    from IPython import embed
+
+    robot_model = RPS.RobotModel()
+    robot_model.InitFromFile('./source/_static/model/RobotModel/GP12.robot')
+    rvis = RPS.RobotVis()
+    rvis.AddBody(robot_model)
+
+    # 从RobotModel获取Manipulator
+    manip = robot_model.GetActiveManipulator()
