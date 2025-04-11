@@ -1,4 +1,4 @@
-使用RobotModel
+RobotModel
 ===================
 
 RPCP中采用 **RPS.RobotModel** 管理机器人模型和参数

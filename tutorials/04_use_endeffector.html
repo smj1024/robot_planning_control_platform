@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>5. 使用EndEffector &mdash; RPCP 2.0.0 documentation</title>
+  <title>5. EndEffector &mdash; RPCP 2.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6. 敬请期待" href="todo.html" />
-    <link rel="prev" title="4. 使用RobotModel" href="03_use_robotmodel.html" /> 
+    <link rel="next" title="6. RigidBody和Environment" href="05_use_rigidbody_and_env.html" />
+    <link rel="prev" title="4. RobotModel" href="03_use_robotmodel.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,14 +47,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">安装说明</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">教程总览</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="00_quickstart.html">1. 快速开始</a></li>
-<li class="toctree-l2"><a class="reference internal" href="01_use_liegroup.html">2. 基础数据类型介绍</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02_use_robotvis.html">3. 使用运动学仿真器</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03_use_robotmodel.html">4. 使用RobotModel</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">5. 使用EndEffector</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="01_use_liegroup.html">2. 基础数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_use_robotvis.html">3. 运动学仿真器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_use_robotmodel.html">4. RobotModel</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5. EndEffector</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">5.1. 创建并使用EndEffector</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="todo.html">6. 敬请期待</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_use_rigidbody_and_env.html">6. RigidBody和Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="todo.html">7. 敬请期待</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../contact.html">联系方式</a></li>
@@ -75,7 +76,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">教程总览</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">5. </span>使用EndEffector</li>
+      <li class="breadcrumb-item active"><span class="section-number">5. </span>EndEffector</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/tutorials/04_use_endeffector.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -86,7 +87,7 @@
            <div itemprop="articleBody">
              
   <section id="endeffector">
-<h1><span class="section-number">5. </span>使用EndEffector<a class="headerlink" href="#endeffector" title="Link to this heading"></a></h1>
+<h1><span class="section-number">5. </span>EndEffector<a class="headerlink" href="#endeffector" title="Link to this heading"></a></h1>
 <p>RPCP中采用 <strong>RPS.EndEffector</strong> 管理机器人末端执行器</p>
 <section id="id1">
 <h2><span class="section-number">5.1. </span>创建并使用EndEffector<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
@@ -103,18 +104,24 @@
 <span class="c1"># 从RobotModel获取Manipulator</span>
 <span class="n">manip</span> <span class="o">=</span> <span class="n">robot_model</span><span class="o">.</span><span class="n">GetActiveManipulator</span><span class="p">()</span>
 
+<span class="c1"># 创建新的末端执行器EndEffector对象</span>
 <span class="n">eef</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">EndEffector</span><span class="p">()</span>
+<span class="c1"># 末端执行器从二进制文件进行初始化</span>
 <span class="n">eef</span><span class="o">.</span><span class="n">InitFromFile</span><span class="p">(</span><span class="s1">&#39;./source/_static/model/EndEffector/FourFingerVacuumPads.eef&#39;</span><span class="p">)</span>
 <span class="n">embed</span><span class="p">()</span>
 
+<span class="c1"># 将末端执行器安装到manip末端</span>
 <span class="n">manip</span><span class="o">.</span><span class="n">SetActiveEndEffector</span><span class="p">(</span><span class="n">eef</span><span class="p">)</span>
 <span class="n">embed</span><span class="p">()</span>
 
+<span class="c1"># 设置末端执行器的安装位置姿态</span>
 <span class="n">eef</span><span class="o">.</span><span class="n">SetAttachingPose</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
 <span class="n">embed</span><span class="p">()</span>
 
+<span class="c1"># 打印安装末端执行器后的manip的TCP位置姿态</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">manip</span><span class="o">.</span><span class="n">GetTCP</span><span class="p">())</span>
 
+<span class="c1"># 设置manip的TCP位置姿态</span>
 <span class="n">manip</span><span class="o">.</span><span class="n">SetTCP</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">([</span><span class="mf">0.185</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.28</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
 <span class="n">embed</span><span class="p">()</span>
 
@@ -126,9 +133,11 @@
 <span class="n">rvis</span><span class="o">.</span><span class="n">ChooseShowMode</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">embed</span><span class="p">()</span>
 
+<span class="c1"># 在仿真器中交互式拖动机器人</span>
 <span class="n">rvis</span><span class="o">.</span><span class="n">StartDragging</span><span class="p">(</span><span class="n">manip</span><span class="p">)</span>
 <span class="n">embed</span><span class="p">()</span>
 
+<span class="c1"># 停止交互式拖动机器人</span>
 <span class="n">rvis</span><span class="o">.</span><span class="n">StopDragging</span><span class="p">()</span>
 <span class="n">embed</span><span class="p">()</span>
 </pre></div>
@@ -141,8 +150,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="03_use_robotmodel.html" class="btn btn-neutral float-left" title="4. 使用RobotModel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="todo.html" class="btn btn-neutral float-right" title="6. 敬请期待" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="03_use_robotmodel.html" class="btn btn-neutral float-left" title="4. RobotModel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="05_use_rigidbody_and_env.html" class="btn btn-neutral float-right" title="6. RigidBody和Environment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
