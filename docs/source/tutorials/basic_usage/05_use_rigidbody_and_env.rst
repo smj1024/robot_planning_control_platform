@@ -129,7 +129,7 @@ RigidBody和Environment
     pc2.SetBaseTransformation(RPS.Pose.RandomStatic())
     embed()
 
-.. image:: ../_static/imgs/05_use_rigidbody_and_env_00.gif
+.. image:: ../../_static/imgs/05_use_rigidbody_and_env_00.gif
    :alt: RigidBody
    :align: center
 

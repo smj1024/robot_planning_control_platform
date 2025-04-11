@@ -81,7 +81,7 @@ RobotVis基础图形绘制
     embed()
     viewer.Delete(h)
 
-.. image:: ../_static/imgs/02_use_robotvis_00.gif
+.. image:: ../../_static/imgs/02_use_robotvis_00.gif
    :alt: RobotVis绘制图形
    :align: center
 
@@ -115,7 +115,7 @@ RobotVis可以方便地显示坐标系，所以经常被用来学习和验证位
 
     embed()
 
-.. image:: ../_static/imgs/02_use_robotvis_01.gif
+.. image:: ../../_static/imgs/02_use_robotvis_01.gif
    :alt: Pose插值(位置与姿态一起插值)
    :align: center
 
@@ -148,6 +148,6 @@ RobotVis可以方便地显示坐标系，所以经常被用来学习和验证位
 
     embed()
 
-.. image:: ../_static/imgs/02_use_robotvis_02.gif
+.. image:: ../../_static/imgs/02_use_robotvis_02.gif
    :alt: Pose插值(位置与姿态分开插值)
    :align: center
