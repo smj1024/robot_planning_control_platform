@@ -58,6 +58,6 @@ RPCP中采用 **RPS.EndEffector** 管理机器人末端执行器
     rvis.StopDragging()
     embed()
 
-.. image:: ../_static/imgs/04_use_endeffector_00.gif
+.. image:: ../../_static/imgs/04_use_endeffector_00.gif
    :alt: 使用EndEffector
    :align: center

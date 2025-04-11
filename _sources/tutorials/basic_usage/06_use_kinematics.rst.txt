@@ -89,11 +89,11 @@
 
     embed()
 
-.. image:: ../_static/imgs/06_use_kinematics_00.gif
+.. image:: ../../_static/imgs/06_use_kinematics_00.gif
    :alt: 解析解
    :align: center
 
-.. image:: ../_static/imgs/06_use_kinematics_01.gif
+.. image:: ../../_static/imgs/06_use_kinematics_01.gif
    :alt: 解析解
    :align: center
 
@@ -145,7 +145,7 @@
     
     embed()
 
-.. image:: ../_static/imgs/06_use_kinematics_02.gif
+.. image:: ../../_static/imgs/06_use_kinematics_02.gif
    :alt: 最近逆解
    :align: center
 
@@ -204,7 +204,7 @@
     
     embed()
 
-.. image:: ../_static/imgs/06_use_kinematics_03.gif
+.. image:: ../../_static/imgs/06_use_kinematics_03.gif
    :alt: 七轴机械臂逆解
    :align: center
 
@@ -244,6 +244,6 @@
 
     embed()
 
-.. image:: ../_static/imgs/06_use_kinematics_04.gif
+.. image:: ../../_static/imgs/06_use_kinematics_04.gif
    :alt: 计算雅可比矩阵
    :align: center

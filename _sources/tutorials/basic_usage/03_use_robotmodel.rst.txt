@@ -42,7 +42,7 @@ RPCP中采用 **RPS.RobotModel** 管理机器人模型和参数
     rvis.ChooseShowMode(mode=1)
     embed()
 
-.. image:: ../_static/imgs/03_use_robotmodel_00.gif
+.. image:: ../../_static/imgs/03_use_robotmodel_00.gif
    :alt: RobotModel
    :align: center
 
