@@ -11,4 +11,5 @@
    03_use_robotmodel
    04_use_endeffector
    05_use_rigidbody_and_env
+   06_use_kinematics
    todo
