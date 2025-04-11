@@ -14,7 +14,13 @@ release = '2.0.0'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon', 'sphinx.ext.viewcode']
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.napoleon',
+    'sphinx.ext.viewcode',
+    'sphinx_design',
+    'sphinxcontrib.jquery'  # 用于交互组件
+]
 # 自动文档设置
 autodoc_default_options = {
     'members': True,
