@@ -1,0 +1,25 @@
+.. RPCP documentation master file, created by
+   sphinx-quickstart on Mon Mar 24 17:50:23 2025.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+RPCP 用户手册
+=================
+RPCP（Robot Planning & Control Platform）：机器人规划与控制开发平台，提供机器人开发所需的模块和工具，加快机器人应用开发和落地速度，实现1天入门，5天方案原理验证，平均缩短开发者80%的开发时间
+
+**RPCP机器人开发平台目标：通过提供机器人开发所需的模块和工具，实现机器人的“开箱即用”**
+
+| **特点与优势：**  
+| 1. 涵盖大量机器人开发所需模块，包括但不限于虚拟仿真、运动学、动力学、碰撞检测、路径规划、轨迹规划、实时伺服控制  
+| 2. 抽象功能，统一机器人硬件，优化设计接口，让1小时学习入门成为可能  
+| 3. 机器人控制器经历8年工业应用场景打磨，相较于ROS开源社区保证工业级稳定  
+| 4. 企业级服务与技术支持，24小时响应问题，48小时给定解决方案  
+
+.. toctree::
+   :maxdepth: 2
+   :caption: 目录:
+
+   installation
+   tutorials/index   
+   contact.rst 
+   .. api/index
