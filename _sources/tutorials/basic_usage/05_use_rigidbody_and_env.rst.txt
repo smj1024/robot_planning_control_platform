@@ -203,3 +203,62 @@ RigidBody和Environment
     embed()
     
 
+在仿真中实现EndEffector对物体的抓取
+------------------------------------
+之前我们介绍了EndEffector，本节又介绍了RididBody，下面的代码介绍了如何在仿真器中使用EndEffector实现对物体RididBody的抓取与释放
+
+.. code-block:: python
+
+    import random
+    import numpy as np
+    from RVLab import RPS
+    from IPython import embed
+
+    # 创建一个空的Environment
+    env = RPS.Environment()
+
+    rvis = RPS.RobotVis()
+    # 将env加载到RobotVis中
+    rvis.LoadEnvironment(env)
+    # 如果不调用LoadEnvironment函数，直接调用AddBody函数，则RobotVis内部会自动创建一个Environment
+
+    # 创建机器人RobotModel对象
+    robot_model = RPS.RobotModel()
+    robot_model.InitFromFile('./source/_static/model/RobotModel/GP12.robot')
+    manip = robot_model.GetActiveManipulator()
+
+    # 创建新的末端执行器EndEffector对象
+    eef = RPS.EndEffector()
+    # 末端执行器从二进制文件进行初始化
+    eef.InitFromFile('./source/_static/model/EndEffector/FourFingerVacuumPads.eef')
+    # 将末端执行器安装到manip末端
+    manip.SetActiveEndEffector(eef)
+    # 设置末端执行器的安装位置姿态
+    eef.SetAttachingPose(RPS.Pose(0,0,0,0,0,0))
+    
+    env.AddBody(robot_model) # 与rvis.AddBody(robot_model)等效
+
+    embed()
+
+    box = RPS.RigidBody()
+    box.InitFromBox(length=0.1, width=0.1, height=0.2)
+    env.AddBody(box)
+    box.SetBaseTransformation(RPS.Pose(1,0.3,0.7,0,0,0,1))
+    embed()
+
+    # 拖动机器人，让末端执行器处于待抓取位置
+    rvis.StartDragging(manip)
+
+    embed()
+    # 将box和eef在仿真器中固连实现抓取效果
+    eef.Grab(box)
+
+    embed()
+    # eef释放box
+    eef.Release(box)
+
+    embed()
+
+.. image:: ../../_static/imgs/05_use_rigidbody_and_env_01.gif
+   :alt: 抓取与释放
+   :align: center

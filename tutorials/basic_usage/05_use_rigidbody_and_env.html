@@ -57,9 +57,11 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">2.5. RigidBody和Environment</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#rigidbody">2.5.1. 创建并使用RigidBody</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#environment">2.5.2. 创建并使用Environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#endeffector">2.5.3. 在仿真中实现EndEffector对物体的抓取</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="06_use_kinematics.html">2.6. 运动学求解器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="07_use_sim_controller.html">2.7. 机器人虚拟控制器</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../todo.html">3. 敬请期待</a></li>
@@ -287,6 +289,62 @@
 <span class="n">embed</span><span class="p">()</span>
 </pre></div>
 </div>
+</section>
+<section id="endeffector">
+<h2><span class="section-number">2.5.3. </span>在仿真中实现EndEffector对物体的抓取<a class="headerlink" href="#endeffector" title="Link to this heading"></a></h2>
+<p>之前我们介绍了EndEffector，本节又介绍了RididBody，下面的代码介绍了如何在仿真器中使用EndEffector实现对物体RididBody的抓取与释放</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">RVLab</span><span class="w"> </span><span class="kn">import</span> <span class="n">RPS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython</span><span class="w"> </span><span class="kn">import</span> <span class="n">embed</span>
+
+<span class="c1"># 创建一个空的Environment</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">Environment</span><span class="p">()</span>
+
+<span class="n">rvis</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RobotVis</span><span class="p">()</span>
+<span class="c1"># 将env加载到RobotVis中</span>
+<span class="n">rvis</span><span class="o">.</span><span class="n">LoadEnvironment</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+<span class="c1"># 如果不调用LoadEnvironment函数，直接调用AddBody函数，则RobotVis内部会自动创建一个Environment</span>
+
+<span class="c1"># 创建机器人RobotModel对象</span>
+<span class="n">robot_model</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RobotModel</span><span class="p">()</span>
+<span class="n">robot_model</span><span class="o">.</span><span class="n">InitFromFile</span><span class="p">(</span><span class="s1">&#39;./source/_static/model/RobotModel/GP12.robot&#39;</span><span class="p">)</span>
+<span class="n">manip</span> <span class="o">=</span> <span class="n">robot_model</span><span class="o">.</span><span class="n">GetActiveManipulator</span><span class="p">()</span>
+
+<span class="c1"># 创建新的末端执行器EndEffector对象</span>
+<span class="n">eef</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">EndEffector</span><span class="p">()</span>
+<span class="c1"># 末端执行器从二进制文件进行初始化</span>
+<span class="n">eef</span><span class="o">.</span><span class="n">InitFromFile</span><span class="p">(</span><span class="s1">&#39;./source/_static/model/EndEffector/FourFingerVacuumPads.eef&#39;</span><span class="p">)</span>
+<span class="c1"># 将末端执行器安装到manip末端</span>
+<span class="n">manip</span><span class="o">.</span><span class="n">SetActiveEndEffector</span><span class="p">(</span><span class="n">eef</span><span class="p">)</span>
+<span class="c1"># 设置末端执行器的安装位置姿态</span>
+<span class="n">eef</span><span class="o">.</span><span class="n">SetAttachingPose</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="n">env</span><span class="o">.</span><span class="n">AddBody</span><span class="p">(</span><span class="n">robot_model</span><span class="p">)</span> <span class="c1"># 与rvis.AddBody(robot_model)等效</span>
+
+<span class="n">embed</span><span class="p">()</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RigidBody</span><span class="p">()</span>
+<span class="n">box</span><span class="o">.</span><span class="n">InitFromBox</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">AddBody</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+<span class="n">box</span><span class="o">.</span><span class="n">SetBaseTransformation</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">embed</span><span class="p">()</span>
+
+<span class="c1"># 拖动机器人，让末端执行器处于待抓取位置</span>
+<span class="n">rvis</span><span class="o">.</span><span class="n">StartDragging</span><span class="p">(</span><span class="n">manip</span><span class="p">)</span>
+
+<span class="n">embed</span><span class="p">()</span>
+<span class="c1"># 将box和eef在仿真器中固连实现抓取效果</span>
+<span class="n">eef</span><span class="o">.</span><span class="n">Grab</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+
+<span class="n">embed</span><span class="p">()</span>
+<span class="c1"># eef释放box</span>
+<span class="n">eef</span><span class="o">.</span><span class="n">Release</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+
+<span class="n">embed</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="抓取与释放" class="align-center" src="../../_images/05_use_rigidbody_and_env_01.gif" />
 </section>
 </section>
 
