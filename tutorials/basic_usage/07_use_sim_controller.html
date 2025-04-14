@@ -1,0 +1,470 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.7. 机器人虚拟控制器 &mdash; RPCP 2.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3. 敬请期待" href="../todo.html" />
+    <link rel="prev" title="2.6. 运动学求解器" href="06_use_kinematics.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            RPCP
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">安装说明</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">教程总览</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../00_quickstart.html">1. 快速开始</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">2. 基础部分</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="01_use_liegroup.html">2.1. 基础数据类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_use_robotvis.html">2.2. 运动学仿真器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03_use_robotmodel.html">2.3. RobotModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04_use_endeffector.html">2.4. EndEffector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05_use_rigidbody_and_env.html">2.5. RigidBody和Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="06_use_kinematics.html">2.6. 运动学求解器</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">2.7. 机器人虚拟控制器</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">2.7.1. 虚拟控制器的基本使用方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#simplemotiondata">2.7.2. 机器人的目标点位表示方法：SimpleMotionData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">2.7.3. 更快捷的控制调试接口</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">2.7.4. 注意</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../todo.html">3. 敬请期待</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact.html">联系方式</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">RPCP</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">教程总览</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">2. </span>基础部分</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2.7. </span>机器人虚拟控制器</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/tutorials/basic_usage/07_use_sim_controller.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">2.7. </span>机器人虚拟控制器<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>前面我们介绍了RPCP中的基本概念和基础模块工具，本节介绍机器人的控制模块Controller，学习完这些基础工具，就可以进行一些简单场景下的机器人应用开发。</p>
+<section id="id2">
+<h2><span class="section-number">2.7.1. </span>虚拟控制器的基本使用方法<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>为了方便开发者在不连接实际机器人的情况下可以进行机器人代码开发与调试，RPCP提供了和真实控制器功能一样的虚拟控制器用于控制仿真器中的机器人。虚拟控制器
+和后面高级模块中要介绍的真实控制器保证接口一致，控制效果一致，当开发者基于虚拟控制器完成代码的调试后，可以通过 <strong>一行代码替换</strong> 完成仿真到实机的切换。</p>
+<p>下面代码介绍了如何创建和使用虚拟控制器</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">RVLab</span><span class="w"> </span><span class="kn">import</span> <span class="n">RPS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython</span><span class="w"> </span><span class="kn">import</span> <span class="n">embed</span>
+
+<span class="n">robot_model</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RobotModel</span><span class="p">()</span>
+<span class="n">robot_model</span><span class="o">.</span><span class="n">InitFromFile</span><span class="p">(</span><span class="s1">&#39;./source/_static/model/RobotModel/GP12.robot&#39;</span><span class="p">)</span>
+<span class="n">manip</span> <span class="o">=</span> <span class="n">robot_model</span><span class="o">.</span><span class="n">GetActiveManipulator</span><span class="p">()</span>
+<span class="n">rvis</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RobotVis</span><span class="p">()</span>
+<span class="n">rvis</span><span class="o">.</span><span class="n">AddBody</span><span class="p">(</span><span class="n">robot_model</span><span class="p">)</span>
+
+<span class="c1"># 创建非实时伺服控制器，is_servo_controller=False表示不支持实时伺服控制，实时伺服控制器会在后面的高级模块章节中介绍</span>
+<span class="n">controller</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">SimController</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="n">manip</span><span class="p">,</span><span class="n">is_servo_controller</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># 打印当前控制器状态信息, 因为控制器刚创建，所以当前应该是处于初始化状态：RPS.ControllerStatus_Init</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">controller</span><span class="o">.</span><span class="n">GetStateMachine</span><span class="p">()</span><span class="o">.</span><span class="n">GetStatus</span><span class="p">())</span>
+
+<span class="c1"># 通过机器人IP连接机器人</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">Connect</span><span class="p">(</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;连接机器人失败&#39;</span><span class="p">)</span>
+
+<span class="c1"># 打印当前控制器状态信息, 连接成功后，当前应该是处于连接状态：RPS.ControllerStatus_Connect</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">controller</span><span class="o">.</span><span class="n">GetStateMachine</span><span class="p">()</span><span class="o">.</span><span class="n">GetStatus</span><span class="p">())</span>
+
+<span class="c1"># 打印自由度信息</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;controller dof: &quot;</span><span class="p">,</span> <span class="n">controller</span><span class="o">.</span><span class="n">GetDoF</span><span class="p">())</span>
+
+<span class="c1"># 获取数字输入DI1的信息</span>
+<span class="n">res</span><span class="p">,</span> <span class="n">io_data</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">GetIO</span><span class="p">(</span><span class="n">address</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">io_type</span><span class="o">=</span><span class="n">RPS</span><span class="o">.</span><span class="n">IOType_DI</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;获取DI1信息失败&#39;</span><span class="p">)</span>
+<span class="c1"># 除了支持数字输入信息，还支持数字输出DO，模拟输入AI，模拟输出AO，组输入GI，组输出GO等</span>
+
+<span class="c1"># 设置数字输出DO1为True</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">SetIO</span><span class="p">(</span><span class="n">address</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">io_type</span><span class="o">=</span><span class="n">RPS</span><span class="o">.</span><span class="n">IOType_DO</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;设置DO状态失败&#39;</span><span class="p">)</span>
+<span class="c1"># 设置数字输出DO1为False</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">SetIO</span><span class="p">(</span><span class="n">address</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">io_type</span><span class="o">=</span><span class="n">RPS</span><span class="o">.</span><span class="n">IOType_DO</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;设置DO状态失败&#39;</span><span class="p">)</span>
+
+<span class="c1"># 获取当前关节位置信息</span>
+<span class="n">res</span><span class="p">,</span> <span class="n">curr_q</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">GetJointPositions</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;获取关节位置信息失败&#39;</span><span class="p">)</span>
+
+<span class="c1"># 获取当前机器人末端的位置姿态信息</span>
+<span class="n">res</span><span class="p">,</span> <span class="n">curr_p</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">GetPose</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;获取末端位置信息失败&#39;</span><span class="p">)</span>
+
+<span class="c1"># 获取当前运动速率信息</span>
+<span class="n">res</span><span class="p">,</span> <span class="n">speed_ratio</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">GetSpeedRatio</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;获取运动速率失败&#39;</span><span class="p">)</span>
+
+<span class="c1"># 设置controller的运动速率(0-1]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">SetSpeedRatio</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;设置运动速率失败&#39;</span><span class="p">)</span>
+
+<span class="c1"># 获取当前TCP信息</span>
+<span class="n">res</span><span class="p">,</span> <span class="n">tcp</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">GetTCP</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;获取tcp信息失败&#39;</span><span class="p">)</span>
+
+<span class="c1"># 设置TCP状态</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">SetTCP</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;设置tcp失败&#39;</span><span class="p">)</span>
+
+<span class="c1"># 上使能机器人</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">EnableRobot</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;上使能失败&#39;</span><span class="p">)</span>
+
+<span class="c1"># 打印当前控制器状态信息, 使能成功后，当前应该是处于连接状态：RPS.ControllerStatus_Enable</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">controller</span><span class="o">.</span><span class="n">GetStateMachine</span><span class="p">()</span><span class="o">.</span><span class="n">GetStatus</span><span class="p">())</span>
+
+<span class="c1"># 下使能机器人</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">DisableRobot</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;下使能失败&#39;</span><span class="p">)</span>
+
+<span class="c1"># 打印当前控制器状态信息, 连接成功后，当前应该是处于连接状态：RPS.ControllerStatus_Connect</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">controller</span><span class="o">.</span><span class="n">GetStateMachine</span><span class="p">()</span><span class="o">.</span><span class="n">GetStatus</span><span class="p">())</span>
+
+<span class="c1"># 断开连接机器人</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">Disconnect</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;断开连接机器人失败&#39;</span><span class="p">)</span>
+
+<span class="c1"># 打印当前控制器状态信息, 因为控制器刚创建，所以当前应该是处于初始化状态：RPS.ControllerStatus_Init</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">controller</span><span class="o">.</span><span class="n">GetStateMachine</span><span class="p">()</span><span class="o">.</span><span class="n">GetStatus</span><span class="p">())</span>
+
+<span class="n">embed</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="simplemotiondata">
+<h2><span class="section-number">2.7.2. </span>机器人的目标点位表示方法：SimpleMotionData<a class="headerlink" href="#simplemotiondata" title="Link to this heading"></a></h2>
+<p>本节使用的非实时伺服控制器，采用RPS.SimpleMotionData数据结构来表示机器人运动的目标点位及其行为，SimpleMotionData的完整定义如下</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">RPS</span><span class="o">.</span><span class="n">SimpleMotionData</span><span class="p">(</span>
+    <span class="n">seq</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">target_values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
+    <span class="n">motion_type</span><span class="p">:</span> <span class="n">RPS</span><span class="o">.</span><span class="n">MOTION_J</span><span class="p">,</span>
+    <span class="n">speed_type</span><span class="p">:</span> <span class="n">RPS</span><span class="o">.</span><span class="n">SPEED_PERCENTAGE</span><span class="p">,</span>
+    <span class="n">speed_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="n">blend_type</span><span class="p">:</span> <span class="n">RPS</span><span class="o">.</span><span class="n">BLEND_CNT</span><span class="p">,</span>
+    <span class="n">blend_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="n">wait_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<ul>
+<li><p>seq： 用于标记多个运动目标的顺序一般从1开始，有多个目标点位时逐步递增</p></li>
+<li><p>target_values： 传入python List数据，当前支持输入目标位置处机器人的关节位置</p></li>
+<li><p>motion_type： 机器人运动到该点位的插值方式，支持关节插值RPS.MOTION_J和笛卡尔插值RPS.MOTION_L，如果不填写则使用默认值RPS.MOTION_J</p></li>
+<li><p>speed_type： 机器人运动到该点位的速度方式，需要根据插值类型搭配使用，如果不填写默认值是百分比速度RPS.SPEED_PERCENTAGE</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>RPS.SPEED_PERCENTAGE： 表示百分比速度</p></li>
+<li><p>RPS.SPEED_TIME： 表示时间(秒)</p></li>
+<li><p>RPS.SPEED_MM_S： 表示末端线速度(毫米/秒)</p></li>
+<li><p>RPS.SPEED_DEG_S： 表示末端角速度(度/秒)</p></li>
+</ul>
+<ul class="simple">
+<li><p>如果插值方式是RPS.MOTION_J，支持RPS.SPEED_PERCENTAGE和RPS.SPEED_TIME</p></li>
+<li><p>如果插值方式是RPS.MOTION_L，支持RPS.SPEED_MM_S和RPS.SPEED_TIME</p></li>
+<li><p>如果该点只是绕着机器人的TCP点旋转，没有线速度，支持RPS.SPEED_DEG_S和RPS.SPEED_TIME</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>speed_value： 具体速度值</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>如果速度类型是RPS.SPEED_PERCENTAGE，则表示具体百分比，范围(0-100]，例如80表示用机器人最大速度的80%运动到目标位置</p></li>
+<li><p>如果速度类型是RPS.SPEED_TIME，则表示运动时间，例如2表示用两秒运动到目标位置</p></li>
+<li><p>如果速度类型是RPS.SPEED_MM_S，则表示末端线速度(毫米/秒)，例如300表示末端保持匀速300mm/s的速度运动到目标点</p></li>
+<li><p>如果速度类型是RPS.SPEED_DEG_S，则表示末端角速度(度/秒)，例如20表示末端保持匀速20度/s的速度运动到目标点</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>blend_type： 中间点过渡类型，当目标点位数量大于等于2时生效，当只有一个目标点位不生效。过渡类型分为精准到达RPS.BLEND_FINE和接近RPS.BLEND_CNT两种类型，二者的区别如下图，其中BLEND_FINE表示精准到达目标点，但是会造成运动过程中的减速停止和重新加速，影响整体效率，BLEND_CNT表示用曲线过渡的方式以一定的过渡半径不停止地通过中间点。CNT数值越大过渡半径越大。</p></li>
+</ul>
+<img alt="过渡类型" class="align-center" src="../../_images/07_use_sim_controller_00.png" />
+<ul class="simple">
+<li><p>blend_value： 过渡半径，只有当blend_type为BLEND_CNT时生效。取值范围[0-100]，只表示相对大小，具体的过渡半径根据不同的机器人品牌而定。</p></li>
+<li><p>wait_time： 表示机器人到达该点后的停留时间(秒)，默认为0.0即不停留</p></li>
+</ul>
+<p>下面的代码介绍了如何用RPS.SimpleMotionData定义目标点位，同时调用非实时伺服控制器的运动控制接口实现运动控制</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">RVLab</span><span class="w"> </span><span class="kn">import</span> <span class="n">RPS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython</span><span class="w"> </span><span class="kn">import</span> <span class="n">embed</span>
+
+<span class="n">robot_model</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RobotModel</span><span class="p">()</span>
+<span class="n">robot_model</span><span class="o">.</span><span class="n">InitFromFile</span><span class="p">(</span><span class="s1">&#39;./source/_static/model/RobotModel/GP12.robot&#39;</span><span class="p">)</span>
+<span class="n">manip</span> <span class="o">=</span> <span class="n">robot_model</span><span class="o">.</span><span class="n">GetActiveManipulator</span><span class="p">()</span>
+<span class="n">rvis</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RobotVis</span><span class="p">()</span>
+<span class="n">rvis</span><span class="o">.</span><span class="n">AddBody</span><span class="p">(</span><span class="n">robot_model</span><span class="p">)</span>
+
+<span class="c1"># 创建非实时伺服控制器，is_servo_controller=False表示不支持实时伺服控制，实时伺服控制器会在后面的高级模块章节中介绍</span>
+<span class="n">controller</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">SimController</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="n">manip</span><span class="p">,</span><span class="n">is_servo_controller</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># 通过机器人IP连接机器人</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">Connect</span><span class="p">(</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;连接机器人失败&#39;</span><span class="p">)</span>
+
+<span class="c1"># 上使能机器人</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">EnableRobot</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;上使能失败&#39;</span><span class="p">)</span>
+
+<span class="c1"># 修改不同的全局运动速率查看效果</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">SetSpeedRatio</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;设置运动速率失败&#39;</span><span class="p">)</span>
+<span class="c1"># 全局运动速率是指在每个target自己的运动速度基础上再乘以全局运动速率系数</span>
+
+<span class="n">embed</span><span class="p">()</span>
+<span class="c1"># 定义目标位置1</span>
+<span class="n">target1</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">SimpleMotionData</span><span class="p">(</span> <span class="n">seq</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># 点位序号</span>
+                                <span class="n">target_values</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.660838</span><span class="p">,</span> <span class="mf">0.687775</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.425342</span><span class="p">,</span> <span class="mf">5.02834e-06</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.457682</span><span class="p">,</span> <span class="mf">0.660834</span><span class="p">],</span>
+                                <span class="p">)</span>
+<span class="c1"># 下发运动指令，wait=True表示该函数等待运动执行完毕后再返回</span>
+<span class="c1"># 如果只执行单个点位，则seq不生效</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">ExecuteWaypoints</span><span class="p">([</span><span class="n">target1</span><span class="p">],</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;运动失败&#39;</span><span class="p">)</span>
+
+<span class="n">embed</span><span class="p">()</span>
+<span class="c1"># 定义目标位置2，用笛卡尔插值方式运动，设定末端匀速400mm/s</span>
+<span class="n">target2</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">SimpleMotionData</span><span class="p">(</span> <span class="n">seq</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="c1"># 点位序号</span>
+                                <span class="n">target_values</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.660837</span><span class="p">,</span> <span class="mf">0.307805</span><span class="p">,</span> <span class="mf">0.121503</span><span class="p">,</span> <span class="mf">2.26099e-06</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.3845</span><span class="p">,</span> <span class="mf">0.660836</span><span class="p">],</span>
+                                <span class="n">motion_type</span><span class="o">=</span><span class="n">RPS</span><span class="o">.</span><span class="n">MOTION_L</span><span class="p">,</span>
+                                <span class="n">speed_type</span><span class="o">=</span><span class="n">RPS</span><span class="o">.</span><span class="n">SPEED_MM_S</span><span class="p">,</span>
+                                <span class="n">speed_value</span><span class="o">=</span><span class="mi">400</span>
+                                <span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">ExecuteWaypoints</span><span class="p">([</span><span class="n">target2</span><span class="p">],</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;运动失败&#39;</span><span class="p">)</span>
+
+<span class="n">embed</span><span class="p">()</span>
+<span class="c1"># 定义目标位置3，设定运行时间3s</span>
+<span class="n">target3</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">SimpleMotionData</span><span class="p">(</span> <span class="n">seq</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                                <span class="n">target_values</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.5708</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+                                <span class="n">motion_type</span><span class="o">=</span><span class="n">RPS</span><span class="o">.</span><span class="n">MOTION_J</span><span class="p">,</span>
+                                <span class="n">speed_type</span><span class="o">=</span><span class="n">RPS</span><span class="o">.</span><span class="n">SPEED_TIME</span><span class="p">,</span>
+                                <span class="n">speed_value</span><span class="o">=</span><span class="mi">3</span>
+                                <span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">ExecuteWaypoints</span><span class="p">([</span><span class="n">target3</span><span class="p">],</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;运动失败&#39;</span><span class="p">)</span>
+
+<span class="n">embed</span><span class="p">()</span>
+<span class="c1"># 三个点位一起执行，wait=True表示该函数等待运动执行完毕后再返回</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">ExecuteWaypoints</span><span class="p">([</span><span class="n">target1</span><span class="p">,</span><span class="n">target2</span><span class="p">,</span><span class="n">target3</span><span class="p">],</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;运动失败&#39;</span><span class="p">)</span>
+
+<span class="n">embed</span><span class="p">()</span>
+<span class="c1"># 采用非阻塞模式执行运动指令,该函数会立刻返回</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">ExecuteWaypoints</span><span class="p">([</span><span class="n">target1</span><span class="p">,</span><span class="n">target2</span><span class="p">,</span><span class="n">target3</span><span class="p">],</span><span class="n">wait</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;运动失败&#39;</span><span class="p">)</span>
+
+<span class="c1"># 通过一直循环检查机器人是否处于RPS.ControllerStatus_Working状态，判断机器人是否到位</span>
+<span class="k">while</span> <span class="n">controller</span><span class="o">.</span><span class="n">GetStateMachine</span><span class="p">()</span><span class="o">.</span><span class="n">GetStatus</span><span class="p">()</span> <span class="o">==</span> <span class="n">RPS</span><span class="o">.</span><span class="n">ControllerStatus_Working</span><span class="p">:</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;机器人运动完毕，当前机器人控制器状态： &quot;</span><span class="p">,</span> <span class="n">controller</span><span class="o">.</span><span class="n">GetStateMachine</span><span class="p">()</span><span class="o">.</span><span class="n">GetStatus</span><span class="p">())</span>
+
+<span class="n">embed</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="SimpleMotionData运动控制" class="align-center" src="../../_images/07_use_sim_controller_01.gif" />
+</section>
+<section id="id3">
+<h2><span class="section-number">2.7.3. </span>更快捷的控制调试接口<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>上面介绍了RPCP中采用SimpleMotionData的数据结构来定义机器人的每个路径点，通过这种方式用户可以实现对每个路径点行为的完全灵活定义，关于更多的SimpleMotionData高级参数，会在高级教程中介绍。
+但是如果开发者想在开发过程中快速调试机械臂，可以采用 <strong>RPS.BasicMotionUtilities</strong> 模块实现一行代码控制机器人。RPS.BasicMotionUtilities本质上是对SimpleMotionData进行了部分封装，
+降低了用户控制机器人行为的灵活性但是加快了调试速度</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">RVLab</span><span class="w"> </span><span class="kn">import</span> <span class="n">RPS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython</span><span class="w"> </span><span class="kn">import</span> <span class="n">embed</span>
+
+<span class="n">robot_model</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RobotModel</span><span class="p">()</span>
+<span class="n">robot_model</span><span class="o">.</span><span class="n">InitFromFile</span><span class="p">(</span><span class="s1">&#39;./source/_static/model/RobotModel/GP12.robot&#39;</span><span class="p">)</span>
+<span class="n">manip</span> <span class="o">=</span> <span class="n">robot_model</span><span class="o">.</span><span class="n">GetActiveManipulator</span><span class="p">()</span>
+<span class="n">rvis</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RobotVis</span><span class="p">()</span>
+<span class="n">rvis</span><span class="o">.</span><span class="n">AddBody</span><span class="p">(</span><span class="n">robot_model</span><span class="p">)</span>
+
+<span class="c1"># 创建非实时伺服控制器，is_servo_controller=False表示不支持实时伺服控制，实时伺服控制器会在后面的高级模块章节中介绍</span>
+<span class="n">controller</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">SimController</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="n">manip</span><span class="p">,</span><span class="n">is_servo_controller</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># 传入controller创建BasicMotionUtilities</span>
+<span class="n">basic_motion</span> <span class="o">=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">BasicMotionUtilities</span><span class="p">(</span><span class="n">controller</span><span class="p">)</span>
+
+<span class="c1"># 通过机器人IP连接机器人</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">Connect</span><span class="p">(</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;连接机器人失败&#39;</span><span class="p">)</span>
+
+<span class="c1"># 上使能机器人</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">EnableRobot</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;上使能失败&#39;</span><span class="p">)</span>
+
+<span class="n">embed</span><span class="p">()</span>
+<span class="c1"># MoveJoints关节空间运动插值，默认采用机器人约束内的最大速度</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">basic_motion</span><span class="o">.</span><span class="n">MoveJoints</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">Rx</span><span class="p">([</span><span class="o">-</span><span class="mf">0.660838</span><span class="p">,</span> <span class="mf">0.687775</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.425342</span><span class="p">,</span> <span class="mf">5.02834e-06</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.457682</span><span class="p">,</span> <span class="mf">0.660834</span><span class="p">]),</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;运动失败&#39;</span><span class="p">)</span>
+<span class="c1"># 记录当前末端的pose</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">GetPose</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">embed</span><span class="p">()</span>
+<span class="c1"># MoveLinear笛卡尔空间运动插值，默认采用机器人约束内的最大速度</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">basic_motion</span><span class="o">.</span><span class="n">MoveLinear</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">Rx</span><span class="p">([</span><span class="o">-</span><span class="mf">0.660837</span><span class="p">,</span> <span class="mf">0.307805</span><span class="p">,</span> <span class="mf">0.121503</span><span class="p">,</span> <span class="mf">2.26099e-06</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.3845</span><span class="p">,</span> <span class="mf">0.660836</span><span class="p">]),</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;运动失败&#39;</span><span class="p">)</span>
+<span class="c1"># 记录当前末端的pose</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">GetPose</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># 修改全局运动速率，全局速率控制依然生效</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">SetSpeedRatio</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;设置运动速率失败&#39;</span><span class="p">)</span>
+
+<span class="n">embed</span><span class="p">()</span>
+<span class="c1"># MoveJoints关节空间运动插值，默认采用机器人约束内的最大速度</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">basic_motion</span><span class="o">.</span><span class="n">MoveJoints</span><span class="p">(</span><span class="n">RPS</span><span class="o">.</span><span class="n">Rx</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.5708</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="n">RPS</span><span class="o">.</span><span class="n">RVSReturn_Success</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;运动失败&#39;</span><span class="p">)</span>
+<span class="c1"># 记录当前末端的pose</span>
+<span class="n">p3</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">GetPose</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># BasicMotionUtilities的另一个方便之处在于支持输入pose形式的target，而SimpleMotionData目前只支持输入关节点位</span>
+<span class="c1"># 下方三个指令输入末端pose</span>
+<span class="n">basic_motion</span><span class="o">.</span><span class="n">MoveJoints</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">basic_motion</span><span class="o">.</span><span class="n">MoveJoints</span><span class="p">(</span><span class="n">p2</span><span class="p">,</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">basic_motion</span><span class="o">.</span><span class="n">MoveJoints</span><span class="p">(</span><span class="n">p3</span><span class="p">,</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># 除此之外BasicMotionUtilities还可以令机器人末端做笛卡尔增量运动</span>
+<span class="c1"># 沿着机器人基坐标系X轴正方形运动0.1米</span>
+<span class="n">basic_motion</span><span class="o">.</span><span class="n">MoveBX</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="c1"># MoveBY，MoveBZ同理</span>
+
+<span class="c1"># 沿着机器人TCP坐标系X轴副方向运动0.1米</span>
+<span class="n">basic_motion</span><span class="o">.</span><span class="n">MoveTX</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="c1"># MoveTY，MoveTZ同理</span>
+
+<span class="c1"># 绕着机器人基坐标系X轴正方向旋转0.1弧度</span>
+<span class="n">basic_motion</span><span class="o">.</span><span class="n">RotateBX</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="c1"># RotateBY,RotateBZ同理</span>
+
+<span class="c1"># 绕着机器人TCP坐标系X轴正方向旋转0.1弧度</span>
+<span class="n">basic_motion</span><span class="o">.</span><span class="n">RotateTX</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="c1"># RotateTY,RotateTZ同理</span>
+
+<span class="n">embed</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h2><span class="section-number">2.7.4. </span>注意<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>当使用真实控制器时，只需要修改创建控制器这一行代码，其他代码均与虚拟控制器一致。真实控制器的创建会在高级教程章节介绍。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="06_use_kinematics.html" class="btn btn-neutral float-left" title="2.6. 运动学求解器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../todo.html" class="btn btn-neutral float-right" title="3. 敬请期待" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, RVLab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
