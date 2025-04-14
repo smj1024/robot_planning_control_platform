@@ -7,4 +7,5 @@
 
    00_quickstart
    basic_usage/index   
+   advanced_usage/index   
    todo

@@ -22,7 +22,6 @@ RPCP的独立性使其不依赖类似ROS等平台，用户能轻松集成到现�
 
     .. grid-item-card::
         :class-header: bg-danger text-white
-        :link: /vs-moveit
 
         **MoveIt开发者的日常**
         ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -36,7 +35,6 @@ RPCP的独立性使其不依赖类似ROS等平台，用户能轻松集成到现�
 
     .. grid-item-card::
         :class-header: bg-success text-white
-        :link: /features
 
         **选择RPCP的理由**
         ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -94,7 +92,7 @@ RPCP的独立性使其不依赖类似ROS等平台，用户能轻松集成到现�
         **🧠 智能规划**
         ^^^^^^^^^^^^^^^^^^^
 
-        专业路径规划+轨迹规划技术可以快速计算出平滑的轨迹，无碰撞，无奇异点
+        专业路径规划+轨迹规划技术可以快速计算出平滑且 **加速度连续的轨迹，无碰撞，无奇异点** 
 
     .. grid-item-card::
         :class-header: sd-bg-info sd-text-dark
@@ -102,7 +100,7 @@ RPCP的独立性使其不依赖类似ROS等平台，用户能轻松集成到现�
         **🔌 硬件广泛深度适配**
         ^^^^^^^^^^^^^^^^^^^
 
-        Python，C++接口直接控制不同品牌机器人，支持FANUC，ABB，Motoman，UR，Franka(新款+老款)等，支持MoveJ、MoveL指令级控制，也支持毫秒级实时伺服控制
+        Python，C++接口直接控制不同品牌机器人，支持FANUC，ABB，Motoman，UR，Franka(新款+老款)等，支持MoveJ、MoveL指令级控制，也支持 **毫秒级实时伺服控制**
 
     .. grid-item-card::
         :class-header: sd-bg-warning sd-text-dark
