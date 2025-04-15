@@ -1,0 +1,3 @@
+.sidebar-drawer .sidebar-tree li.toctree-l1:first-child {
+    display: block !important;
+}

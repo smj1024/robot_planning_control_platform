@@ -1,7 +1,7 @@
 .. raw:: html
 
     <div class="admonition danger" style="text-align: left; padding: 2rem; margin-bottom: 2rem;">
-        <h2 style="color: #dc3545; margin: 0">🚨 您还使用ROS或MoveIt开发您的机器人应用吗？</h2>
+        <h2 style="color: #dc3545; margin: 0">🚨 您还使用ROS或MoveIt开发机器人应用吗？</h2>
     </div>
 
 **机器人开发的未来: RPCP机器人规划与控制开发平台**
@@ -59,7 +59,6 @@ RPCP的独立性使其不依赖类似ROS等平台，用户能轻松集成到现�
             margin: 2rem 0 1rem;
         }
         .metric-badge {
-            background: #f8f9fa;
             border: 1px solid #dee2e6;
             border-radius: 20px;
             padding: 0.2rem 1rem;

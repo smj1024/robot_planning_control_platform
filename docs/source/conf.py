@@ -33,5 +33,11 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'sphinx_rtd_theme'
+# html_theme = 'sphinx_rtd_theme'
+html_theme = 'furo'
+# html_theme_options = {
+#     "sidebar_hide_name": False,  # 显示标题（通常是项目名）
+# }
+
 html_static_path = ['_static']
+# html_css_files = ['custom.css']
