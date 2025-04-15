@@ -8,4 +8,5 @@
    00_quickstart
    basic_usage/index   
    advanced_usage/index   
+   real_controller/index
    todo
