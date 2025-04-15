@@ -59,7 +59,6 @@ RPCP的独立性使其不依赖类似ROS等平台，用户能轻松集成到现�
             margin: 2rem 0 1rem;
         }
         .metric-badge {
-            background: #f8f9fa;
             border: 1px solid #dee2e6;
             border-radius: 20px;
             padding: 0.2rem 1rem;
