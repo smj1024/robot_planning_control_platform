@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>4. 控制器部分 &mdash; RPCP 2.0.0 documentation</title>
+  <title>4.6. NACHI那智控制器使用教程 &mdash; RPCP 2.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
@@ -21,8 +21,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="4.1. ABB控制器使用教程" href="01_use_ABB_controller.html" />
-    <link rel="prev" title="3.4. 敬请期待，即将上线" href="../advanced_usage/other.html" /> 
+    <link rel="next" title="4.7. JAKA节卡控制器使用教程" href="07_use_JAKA_controller.html" />
+    <link rel="prev" title="4.5. Franka控制器使用教程" href="05_use_Franka_controller.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,13 +51,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../00_quickstart.html">1. 快速开始</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../basic_usage/index.html">2. 基础部分</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../advanced_usage/index.html">3. 进阶部分</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">4. 控制器部分</a><ul>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4. 控制器部分</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="01_use_ABB_controller.html">4.1. ABB控制器使用教程</a></li>
 <li class="toctree-l3"><a class="reference internal" href="02_use_FANUC_controller.html">4.2. FANUC控制器使用教程</a></li>
 <li class="toctree-l3"><a class="reference internal" href="03_use_Motoman_controller.html">4.3. 安川控制器使用教程</a></li>
 <li class="toctree-l3"><a class="reference internal" href="04_use_UR_controller.html">4.4. UR控制器使用教程</a></li>
 <li class="toctree-l3"><a class="reference internal" href="05_use_Franka_controller.html">4.5. Franka控制器使用教程</a></li>
-<li class="toctree-l3"><a class="reference internal" href="06_use_Nachi_controller.html">4.6. NACHI那智控制器使用教程</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.6. NACHI那智控制器使用教程</a></li>
 <li class="toctree-l3"><a class="reference internal" href="07_use_JAKA_controller.html">4.7. JAKA节卡控制器使用教程</a></li>
 <li class="toctree-l3"><a class="reference internal" href="08_use_DoBot_controller.html">4.8. 越疆控制器使用教程</a></li>
 <li class="toctree-l3"><a class="reference internal" href="09_use_AUBO_controller.html">4.9. 遨博控制器使用教程</a></li>
@@ -90,9 +90,10 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">教程总览</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">4. </span>控制器部分</li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4. </span>控制器部分</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.6. </span>NACHI那智控制器使用教程</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/tutorials/real_controller/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/tutorials/real_controller/06_use_Nachi_controller.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -100,35 +101,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="id1">
-<h1><span class="section-number">4. </span>控制器部分<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="01_use_ABB_controller.html">4.1. ABB控制器使用教程</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_use_FANUC_controller.html">4.2. FANUC控制器使用教程</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_use_Motoman_controller.html">4.3. 安川控制器使用教程</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_use_UR_controller.html">4.4. UR控制器使用教程</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05_use_Franka_controller.html">4.5. Franka控制器使用教程</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06_use_Nachi_controller.html">4.6. NACHI那智控制器使用教程</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07_use_JAKA_controller.html">4.7. JAKA节卡控制器使用教程</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_use_DoBot_controller.html">4.8. 越疆控制器使用教程</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09_use_AUBO_controller.html">4.9. 遨博控制器使用教程</a></li>
-<li class="toctree-l1"><a class="reference internal" href="10_use_ESTUN_controller.html">4.10. 埃斯顿控制器使用教程</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11_use_EFORT_controller.html">4.11. 埃夫特控制器使用教程</a></li>
-<li class="toctree-l1"><a class="reference internal" href="12_use_SIASUN_controller.html">4.12. 新松控制器使用教程</a></li>
-<li class="toctree-l1"><a class="reference internal" href="13_use_INOVANCE_controller.html">4.13. 汇川控制器使用教程</a></li>
-<li class="toctree-l1"><a class="reference internal" href="14_use_ROKAE_controller.html">4.14. 珞石控制器使用教程</a></li>
-<li class="toctree-l1"><a class="reference internal" href="15_use_ELITE_controller.html">4.15. 艾利特控制器使用教程</a></li>
-</ul>
-</div>
+  <section id="nachi">
+<h1><span class="section-number">4.6. </span>NACHI那智控制器使用教程<a class="headerlink" href="#nachi" title="Link to this heading"></a></h1>
+<p>即将开放，敬请期待</p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../advanced_usage/other.html" class="btn btn-neutral float-left" title="3.4. 敬请期待，即将上线" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="01_use_ABB_controller.html" class="btn btn-neutral float-right" title="4.1. ABB控制器使用教程" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="05_use_Franka_controller.html" class="btn btn-neutral float-left" title="4.5. Franka控制器使用教程" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="07_use_JAKA_controller.html" class="btn btn-neutral float-right" title="4.7. JAKA节卡控制器使用教程" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
